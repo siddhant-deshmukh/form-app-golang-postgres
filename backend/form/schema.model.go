@@ -17,10 +17,10 @@ var db *gorm.DB
 type Form struct {
 	ID               uint                `json:"id" gorm:"primaryKey;autoIncrement;<-:create" `
 	AuthorID         uint                `json:"author_id" gorm:"not null"`
-	Title            string              `json:"title" gorm:"type:varchar(100);not null;check: char_length(title) > 5"`
-	Description      string              `json:"description" gorm:"type:varchar(300);not null"`
-	Quiz_Setting     *Quiz_Setting       `json:"quiz_setting" gorm:"type:jsonb"`
-	Response_Setting *Response_Setting   `json:"response_setting" gorm:"type:jsonb"`
+	Title            string              `json:"title" gorm:"type:varchar(100);not null; default:'Untitled Form'; check: char_length(title) > 5"`
+	Description      string              `json:"description" gorm:"type:varchar(300); default:''; not null"`
+	Quiz_Setting     *Quiz_Setting       `json:"quiz_setting" gorm:"type:jsonb; not null; default:'{ \"is_quiz\": true, \"default_points\":1 }'::jsonb "`
+	Response_Setting *Response_Setting   `json:"response_setting" gorm:"type:jsonb; default:'{ \"collect_email\": false, \"allow_edit_res\": false, \"send_res_copy\": false }'::jsonb"`
 	CreatedAt        time.Time           `json:"-"`
 	UpdatedAt        time.Time           `json:"-"`
 	Questions        []question.Question `gorm:"foreignKey:FormID;references:ID"`

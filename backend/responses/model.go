@@ -16,9 +16,9 @@ var db *gorm.DB
 
 type Response struct {
 	ID        uint       `json:"id"`
-	UserEmail string     `json:"user_email,omitempty"`
-	FormID    uint       `json:"form_id"`
-	Answers   queAnswers `json:"answers" `
+	UserEmail string     `json:"user_email,omitempty" gorm:"uniqueIndex:idx_response_multi"`
+	FormID    uint       `json:"form_id" gorm:"uniqueIndex:idx_response_multi"`
+	Answers   queAnswers `json:"answers"`
 	CreatedAt time.Time  `json:"-"`
 	UpdatedAt time.Time  `json:"-"`
 }

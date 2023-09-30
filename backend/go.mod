@@ -3,7 +3,7 @@ module github.com/siddhant-deshmukh/google-form-clone-gin-postgres
 go 1.20
 
 require (
-	github.com/99designs/gqlgen v0.17.38
+	github.com/fvbock/endless v0.0.0-20170109170031-447134032cb6
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/validator/v10 v10.15.4
 	github.com/golang-jwt/jwt/v5 v5.0.0

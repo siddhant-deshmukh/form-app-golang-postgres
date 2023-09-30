@@ -9,6 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/jackc/pgx/v5/pgconn"
+	"github.com/mitchellh/mapstructure"
 	"github.com/siddhant-deshmukh/google-form-clone-gin-postgres/utils"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -61,7 +62,7 @@ func userLogin(c *gin.Context) {
 }
 
 func registerUser(c *gin.Context) {
-	var newUserData User
+	var newUserData UserCreateForm
 
 	err := c.BindJSON(&newUserData)
 	if err != nil {
@@ -88,7 +89,10 @@ func registerUser(c *gin.Context) {
 	}
 	newUserData.Password = string(bytes)
 
-	result := db.Create(&newUserData)
+	var user User
+	mapstructure.Decode(newUserData, &user)
+
+	result := db.Create(&user)
 	var duplicateKey = &pgconn.PgError{Code: "23505"}
 	if errors.As(result.Error, &duplicateKey) {
 		c.JSON(http.StatusConflict, gin.H{
@@ -107,7 +111,7 @@ func registerUser(c *gin.Context) {
 		return
 	}
 
-	err = saveTokenString(c, strconv.FormatUint(uint64(newUserData.ID), 10))
+	err = saveTokenString(c, strconv.FormatUint(uint64(user.ID), 10))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Some error occured while creating token",
@@ -117,9 +121,9 @@ func registerUser(c *gin.Context) {
 
 	c.JSON(http.StatusCreated, gin.H{
 		"user": User{
-			ID:    newUserData.ID,
-			Name:  newUserData.Name,
-			Email: newUserData.Email,
+			ID:    user.ID,
+			Name:  user.Name,
+			Email: user.Email,
 		},
 	})
 }

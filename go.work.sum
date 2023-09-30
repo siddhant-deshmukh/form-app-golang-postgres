@@ -1,3 +1,5 @@
+github.com/99designs/gqlgen v0.17.38 h1:3r7G7i8UAdY0iYreNiBAA55auVsrowO0+ZhMl5g4GYU=
+github.com/99designs/gqlgen v0.17.38/go.mod h1:2v+dKtpI8mIzYeW9dYN8mO69tMmjszW2xKLNcWR/5wQ=
 github.com/agnivade/levenshtein v1.1.1/go.mod h1:veldBMzWxcCG2ZvUTKD2kJNRdCk5hVbJomOvKkmgYbo=
 github.com/cpuguy83/go-md2man/v2 v2.0.2/go.mod h1:tgQtvFlXSQOSOSIRvRPT7W67SCa46tRHOmNcaadrF8o=
 github.com/google/uuid v1.3.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=

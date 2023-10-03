@@ -41,7 +41,6 @@ func newQuestion(c *gin.Context) {
 		return
 	} else if author_id != user_id {
 		c.JSON(http.StatusForbidden, gin.H{
-			"error":   err.Error(),
 			"message": "Not allowed",
 		})
 		return
@@ -128,12 +127,11 @@ func editQuestion(c *gin.Context) {
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "While updating question",
-			"err":     result.Error,
+			"err":     result.Error.Error(),
 		})
 	} else if result.RowsAffected == 0 {
 		c.JSON(http.StatusNotFound, gin.H{
 			"message": "While updating question",
-			"err":     result.Error,
 		})
 	} else {
 		c.JSON(http.StatusOK, gin.H{

@@ -72,6 +72,8 @@ func AuthUserMiddleWare() gin.HandlerFunc {
 			id := claims["_id"].(string)
 			uid, err := strconv.ParseUint(id, 10, 32)
 			if err != nil {
+				fmt.Println("\nerror : \t", err.Error(), "\n ")
+
 				c.JSON(http.StatusBadRequest, gin.H{
 					"error":   err,
 					"message": "Invalid token format",
@@ -104,12 +106,16 @@ func AuthUserMiddleWare() gin.HandlerFunc {
 	}
 }
 
-func getUserById(id uint) (User, error) {
+func getUserById(id uint) (UserResponse, error) {
 	var user User
 	if result := db.First(&user, id); result.Error != nil {
-		return user, result.Error
+		return UserResponse{
+			ID:    user.ID,
+			Email: user.Email,
+			Name:  user.Name,
+		}, result.Error
 	}
-	return User{
+	return UserResponse{
 		ID:    user.ID,
 		Email: user.Email,
 		Name:  user.Name,

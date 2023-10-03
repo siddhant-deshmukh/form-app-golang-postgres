@@ -13,6 +13,7 @@ import (
 	"github.com/siddhant-deshmukh/google-form-clone-gin-postgres/user"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func Initialize(port string, db_dsn_env_name string) (*gin.Engine, *gorm.DB) {
@@ -23,7 +24,9 @@ func Initialize(port string, db_dsn_env_name string) (*gin.Engine, *gorm.DB) {
 		log.Fatal("Unable to get Postgresql data source name (DSN)")
 	}
 	dsn := os.Getenv(db_dsn_env_name)
-	db, err := gorm.Open(postgres.Open(dsn))
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.Info),
+	})
 	/**
 	, &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),

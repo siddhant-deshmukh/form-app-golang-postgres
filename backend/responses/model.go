@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/siddhant-deshmukh/google-form-clone-gin-postgres/form"
 	"github.com/siddhant-deshmukh/google-form-clone-gin-postgres/question"
 	"gorm.io/gorm"
 )
@@ -17,10 +18,11 @@ var db *gorm.DB
 type Response struct {
 	ID        uint       `json:"id"`
 	UserEmail string     `json:"user_email,omitempty" gorm:"uniqueIndex:idx_response_multi"`
-	FormID    uint       `json:"form_id" gorm:"uniqueIndex:idx_response_multi"`
+	FormID    uint       `json:"form_id" gorm:"uniqueIndex:idx_response_multi;"`
 	Answers   queAnswers `json:"answers"`
 	CreatedAt time.Time  `json:"-"`
 	UpdatedAt time.Time  `json:"-"`
+	Form      form.Form  `gorm:"foreignKey:form_id"`
 }
 
 type queAnswers map[string][]string

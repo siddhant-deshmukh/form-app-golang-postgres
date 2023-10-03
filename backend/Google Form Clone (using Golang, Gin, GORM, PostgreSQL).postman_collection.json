@@ -1,0 +1,730 @@
+{
+	"info": {
+		"_postman_id": "4264d008-829e-434a-8f0a-38f4e4ba3341",
+		"name": "Google Form Clone (using Golang, Gin, GORM, PostgreSQL)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16604107"
+	},
+	"item": [
+		{
+			"name": "Form",
+			"item": [
+				{
+					"name": "Question Seq",
+					"item": [
+						{
+							"name": "Get questions",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/f/q/{{formId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"f",
+										"q",
+										"{{formId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit question sequence",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    3,\n    5,\n    4,\n    2\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/f/q/{{formId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"f",
+										"q",
+										"{{formId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create new form",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Am I the cutest cat?\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/f",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Form",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/f/84",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"f",
+								"84"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get form",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/f/{{formId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"f",
+								"{{formId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Form",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n    \"description\" : \"This is a survey of me\",\n    \"quiz_setting\" : {\n        \"default_points\" : 11\n    },\n    \"response_setting\" : {\n        \"collect_email\": false,\n        \"allow_edit_res\": true\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/f/{{formId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"f",
+								"{{formId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Question",
+			"item": [
+				{
+					"name": "Create new question",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"form_id\" : 85,\n    \"index_at\" : 1,\n    \"title\" : \"Least imp\",\n    \"ques_type\" : \"long\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/q/{{formId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"q",
+								"{{formId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Valid Question 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"form_id\" : 85,\n    \"index_at\" : 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/q/{{formId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"q",
+										"{{formId}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successful\",\n    \"newQues\": {\n        \"form_id\": 85,\n        \"author_id\": 91,\n        \"index_at\": 1\n    },\n    \"question\": {\n        \"id\": 6,\n        \"is_required\": true,\n        \"ques_type\": \"mcq\",\n        \"title\": \"Untitled question\",\n        \"description\": \"\",\n        \"options\": null,\n        \"correct_ans\": null,\n        \"points\": 1,\n        \"author_id\": 91,\n        \"form_id\": 85,\n        \"index_at\": 1\n    }\n}"
+						},
+						{
+							"name": "Valid Question 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"form_id\" : 85,\n    \"index_at\" : 1,\n    \"title\" : \"What is your occupation\",\n    \"ques_type\" : \"mcq\",\n    \"options\" : [\n        \"doctor\",\n        \"web developer\",\n        \"engineer\",\n        \"cat lover\"\n    ],\n    \"correct_ans\" : [\"cat lover\"],\n    \"description\" : \"This is stupid question\",\n    \"points\" : 2,\n    \"is_required\" : false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/q/{{formId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"q",
+										"{{formId}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successful\",\n    \"newQues\": {\n        \"ques_type\": \"mcq\",\n        \"title\": \"What is your occupation\",\n        \"description\": \"This is stupid question\",\n        \"options\": [\n            \"doctor\",\n            \"web developer\",\n            \"engineer\",\n            \"cat lover\"\n        ],\n        \"correct_ans\": [\n            \"cat lover\"\n        ],\n        \"points\": 2,\n        \"form_id\": 85,\n        \"author_id\": 91,\n        \"index_at\": 1\n    },\n    \"question\": {\n        \"id\": 8,\n        \"is_required\": true,\n        \"ques_type\": \"mcq\",\n        \"title\": \"What is your occupation\",\n        \"description\": \"This is stupid question\",\n        \"options\": [\n            \"doctor\",\n            \"web developer\",\n            \"engineer\",\n            \"cat lover\"\n        ],\n        \"correct_ans\": [\n            \"cat lover\"\n        ],\n        \"points\": 2,\n        \"author_id\": 91,\n        \"form_id\": 85,\n        \"index_at\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Edit Question",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"New title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/q/{{questionId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"q",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/q/{{questionId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"q",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Question",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/q/{{questionId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"q",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Responses",
+			"item": [
+				{
+					"name": "New Response",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"answers\" : {\n        \"2\" : [\"Something\", \"Nothing\", \"bla bla\"],\n        \"3\" : [\"Something\", \"One more\"],\n        \"4\" : [\"Blal bla \"],\n        \"5\" : [\"Meow Meow Meow Meow\"]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/r/{{formId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"r",
+								"{{formId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get responses",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"duggu@gmail.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/login/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"login",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Valid login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"duggu@gmail.com\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"ID\": 91,\n        \"Name\": \"Siddhant\",\n        \"Email\": \"duggu@gmail.com\",\n        \"Password\": \"\",\n        \"Forms\": null,\n        \"Questions\": null\n    }\n}"
+				},
+				{
+					"name": "Wrong email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"duggu@gmail.in\",\n    \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"err\": {},\n    \"message\": \"Email not found\"\n}"
+				},
+				{
+					"name": "Wrong password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"duggu@gmail.com\",\n    \"password\": \"wrongpassword\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/login/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Enter correct credentials\"\n}"
+				},
+				{
+					"name": "No password",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"duggu@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login",
+								""
+							]
+						}
+					},
+					"status": "Not Acceptable",
+					"code": 406,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Enter correct credentials\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get forms",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/u",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"u"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"duggu@gmail.com\",\n    \"password\": \"password\",\n    \"name\" : \"Siddhant\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Valid new user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"simonganja@gmail.com\",\n    \"password\": \"password\",\n    \"name\" : \"Siddhant\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"name": "Content-Type",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"user\": {\n        \"ID\": 95,\n        \"Name\": \"Siddhant\",\n        \"Email\": \"simonganja@gmail.com\",\n        \"Password\": \"\",\n        \"Forms\": null,\n        \"Questions\": null\n    }\n}"
+				},
+				{
+					"name": "Duplicate email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"duggu@gmail.com\",\n    \"password\": \"password\",\n    \"name\" : \"Siddhant\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"err\": \"ERROR: duplicate key value violates unique constraint \\\"idx_users_email\\\" (SQLSTATE 23505)\",\n    \"message\": \"Email already exist\"\n}"
+				},
+				{
+					"name": "Invalid name",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"duggusayo@gmail.com\",\n    \"password\": \"password\",\n    \"name\" : \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"err\": \"Key: 'UserCreateForm.Name' Error:Field validation for 'Name' failed on the 'min' tag\",\n    \"message\": \"Invalid Name \"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "formId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "questionId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

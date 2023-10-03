@@ -19,7 +19,12 @@ func createForm(c *gin.Context) {
 	var newForm NewForm
 	user_id := c.MustGet("user_id").(uint)
 	err := c.BindJSON(&newForm)
+
+	fmt.Println("\n\n : \t", "to create new form", "\n ")
+
 	if err != nil {
+		fmt.Println("\nerror : \t", err.Error(), "\n ")
+
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "Bad form data format",
 			"err":     err,
@@ -30,6 +35,8 @@ func createForm(c *gin.Context) {
 	newForm.AuthorID = user_id
 
 	if res_msg, err := utils.ValidateFieldWithStruct(newForm); err != nil {
+		fmt.Println("\nerror : \t", err.Error(), "\n ")
+
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": res_msg,
 			"err":     err,
@@ -43,14 +50,13 @@ func createForm(c *gin.Context) {
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "While creating data",
-			"err":     result.Error,
+			"err":     result.Error.Error(),
 		})
 		return
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"newform": newForm,
-		"form":    form,
+		"form": form,
 	})
 }
 
@@ -63,11 +69,18 @@ func getFormById(c *gin.Context) {
 	if err != nil {
 		return
 	}
-	result := db.Model(&Form{ID: formId}).First(&form)
+
+	result := db.Where("id = ?", formId).Model(&Form{}).Find(&form)
+	if result.Error == gorm.ErrRecordNotFound || result.RowsAffected == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "While creating result",
+		})
+		return
+	}
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "While creating result",
-			"err":     result.Error,
+			"err":     result.Error.Error(),
 		})
 		return
 	}
@@ -138,9 +151,9 @@ func editForm(c *gin.Context) {
 			keys = append(keys, key)
 		}
 	}
-	fmt.Println(keys)
-	fmt.Println()
-	fmt.Println(form_map)
+	// fmt.Println(keys)
+	// fmt.Println()
+	// fmt.Println(form_map)
 
 	result := db.Model(Form{}).Select(keys).Where("id = ? AND author_id = ?", formId, user_id).Updates(form_map)
 	// result := db.Model(Form{}).Select("title").Where "send_res_copy": true("id = ? AND author_id = ?", formId, user_id).Updates(map[string]interface{}{"title": "Meow"})
@@ -149,7 +162,7 @@ func editForm(c *gin.Context) {
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "While updating row",
-			"err":     result.Error,
+			"err":     result.Error.Error(),
 			"keys":    keys,
 		})
 		return
@@ -157,7 +170,7 @@ func editForm(c *gin.Context) {
 	if result.RowsAffected == 0 {
 		c.JSON(http.StatusNotFound, gin.H{
 			"message": "While updating row",
-			"err":     result.Error,
+			"err":     result.Error.Error(),
 		})
 		return
 	}
@@ -167,36 +180,52 @@ func editForm(c *gin.Context) {
 	// 	})
 	// 	return
 	// }
-	c.JSON(http.StatusAccepted, gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"message": "Updated",
 		"form":    form,
 	})
 }
 
 func deleteForm(c *gin.Context) {
-	var form Form
+	// var form Form
 	user_id := c.MustGet("user_id").(uint)
 
 	formId, err := utils.GetFieldFromUrl(c, "id")
 	if err != nil {
 		return
 	}
+	// Where("author_id = ?", user_id).
+	result := db.Delete(&Form{ID: formId, AuthorID: user_id}, "author_id = ?", user_id)
 
-	result := db.First(&form, formId)
 	if result.Error != nil {
+		if result.Error == gorm.ErrRecordNotFound {
+			c.JSON(http.StatusNotFound, gin.H{
+				"message": "While deleting form",
+				"err":     result.Error.Error(),
+			})
+			return
+		}
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"message": "While creating result",
-			"err":     result.Error,
+			"message": "While deleting form",
+			"err":     result.Error.Error(),
 		})
 		return
 	}
-
-	if user_id != form.AuthorID {
-		c.JSON(http.StatusForbidden, gin.H{
-			"message": "Permission Denied",
+	if result.RowsAffected == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "While deleting form",
 		})
 		return
 	}
+	c.JSON(http.StatusOK, gin.H{
+		"message": "Deleted form",
+	})
+	// if user_id != form.AuthorID {
+	// 	c.JSON(http.StatusForbidden, gin.H{
+	// 		"message": "Permission Denied",
+	// 	})
+	// 	return
+	// }
 }
 
 func getQuestions(c *gin.Context) {
@@ -248,7 +277,6 @@ func getQuestions(c *gin.Context) {
 			"questions":     questions,
 		})
 	}
-
 }
 
 func postQuestions(c *gin.Context) {
@@ -274,6 +302,12 @@ func postQuestions(c *gin.Context) {
 
 	var queSeq question.QueSeq
 	if result := db.Where("author_id = ? AND form_id = ?", user_id, form_id).First(&queSeq); result.Error != nil {
+		if result.Error == gorm.ErrRecordNotFound {
+			c.JSON(http.StatusNotFound, gin.H{
+				"message": "While creating result",
+			})
+			return
+		}
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Something goes wrong",
 			"err":     result.Error.Error(),
@@ -299,12 +333,6 @@ func postQuestions(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Something goes wrong",
 			"err":     result.Error.Error(),
-		})
-		return
-	} else if result.RowsAffected == 0 {
-		c.JSON(http.StatusNotFound, gin.H{
-			"message": "Incorrect format of input",
-			"err":     "not found",
 		})
 		return
 	}

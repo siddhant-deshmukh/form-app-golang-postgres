@@ -1,7 +1,7 @@
 package form
 
 type NewForm struct {
-	Title            string                `json:"title" validate:"required,min=5,max=100"`
+	Title            string                `json:"title" validate:"required,min=6,max=100"`
 	Description      string                `json:"description,omitempty" validate:"omitempty,max=300"`
 	AuthorID         uint                  `json:"author_id" validate:"required"`
 	Quiz_Setting     *New_Quiz_Setting     `json:"quiz_setting,omitempty"  validate:"omitempty"`

@@ -18,29 +18,44 @@ import (
 var token_key = utils.GetTokenKey()
 
 func userLogin(c *gin.Context) {
-	var userData User
+	var userData UserLoginForm
 	var user User
 
 	err := c.BindJSON(&userData)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "enter user data in correct form",
-			"err":     err,
+			"err":     err.Error(),
+		})
+		return
+	}
+
+	if res_msg, err := utils.ValidateFieldWithStruct(userData); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"message": res_msg,
+			"err":     err.Error(),
 		})
 		return
 	}
 
 	result := db.Find(&User{}).Where("email = ?", userData.Email).First(&user)
+	if result.Error == gorm.ErrRecordNotFound || result.RowsAffected == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "Email not found",
+			"err":     result.Error.Error(),
+		})
+		return
+	}
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Some error occured",
-			"err":     result.Error,
+			"err":     result.Error.Error(),
 		})
 		return
 	}
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(userData.Password))
 	if err != nil {
-		c.JSON(http.StatusConflict, gin.H{"message": "Enter correct credentials", "err": err, "p": userData.Password, "c": user.Password})
+		c.JSON(http.StatusNotAcceptable, gin.H{"message": "Enter correct credentials"})
 		return
 	}
 
@@ -48,12 +63,12 @@ func userLogin(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Some error occured while creating token",
-			"error":   err,
+			"error":   err.Error(),
 		})
 	}
 
-	c.JSON(http.StatusCreated, gin.H{
-		"user": User{
+	c.JSON(http.StatusOK, gin.H{
+		"user": UserResponse{
 			ID:    user.ID,
 			Name:  user.Name,
 			Email: user.Email,
@@ -68,7 +83,7 @@ func registerUser(c *gin.Context) {
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "enter user data in correct form",
-			"err":     err,
+			"err":     err.Error(),
 		})
 		return
 	}
@@ -76,7 +91,7 @@ func registerUser(c *gin.Context) {
 	if res_msg, err := utils.ValidateFieldWithStruct(newUserData); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": res_msg,
-			"err":     err,
+			"err":     err.Error(),
 		})
 		return
 	}
@@ -97,14 +112,14 @@ func registerUser(c *gin.Context) {
 	if errors.As(result.Error, &duplicateKey) {
 		c.JSON(http.StatusConflict, gin.H{
 			"message": "Email already exist",
-			"err":     result.Error,
+			"err":     result.Error.Error(),
 		})
 		return
 	}
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "Some error occured",
-			"err":     result.Error,
+			"err":     result.Error.Error(),
 			"ee":      result.Error.Error(),
 			"ee2":     gorm.ErrDuplicatedKey.Error(),
 		})
@@ -120,12 +135,20 @@ func registerUser(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{
-		"user": User{
+		"user": UserResponse{
 			ID:    user.ID,
 			Name:  user.Name,
 			Email: user.Email,
 		},
 	})
+
+	/**
+	"user": map[string]any{
+			"id":    user.ID,
+			"name":  user.Name,
+			"email": user.Email,
+		},
+	*/
 }
 
 func saveTokenString(c *gin.Context, ID string) error {

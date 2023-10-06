@@ -90,7 +90,7 @@ func editQuestion(c *gin.Context) {
 
 	user_id := c.MustGet("user_id").(uint) // getting user_id from the AuthUserMiddleware
 
-	// converting edit question to a map
+	// converting edit question to a mapGetFieldFromUrl
 	jsonData, err := json.Marshal(editQue)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

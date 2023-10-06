@@ -1,0 +1,3689 @@
+{
+	"info": {
+		"_postman_id": "4264d008-829e-434a-8f0a-38f4e4ba3341",
+		"name": "Google Form Clone (using Golang, Gin, GORM, PostgreSQL)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16604107"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"item": [
+						{
+							"name": "Positive",
+							"item": [
+								{
+									"name": "Register : 201 valid user",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"{{$randomPassword}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Register : 201 valid user",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"{{$randomPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 03 Oct 2023 14:24:15 GMT"
+												},
+												{
+													"key": "Content-Length",
+													"value": "78"
+												},
+												{
+													"key": "Set-Cookie",
+													"value": "meow=\"neowrgnogb\";",
+													"description": "",
+													"type": "text"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"user\": {\n        \"id\": 135,\n        \"name\": \"Rita Schuster\",\n        \"email\": \"Melissa_Thiel@hotmail.com\"\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "Register : 201 min Name length",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\" : \"ab\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"{{$randomPassword}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Register : 201 max Name length",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\" : \"abcdefghijabcdefghij\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"{{$randomPassword}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Register : 201 min Password length",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"abcde\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Register : 201 max Password length",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"abcdefghijabcdefghij\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var allPass = true",
+											"var currPass = true",
+											"pm.test(\"Response is JSON\", () => {",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+											"",
+											"    currPass = true",
+											"}); ",
+											"",
+											"pm.test(\"Check status 201\", ()=>{",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"    pm.response.to.have.status(201)",
+											"    currPass = true",
+											"})",
+											"",
+											"pm.test(\"User schema is valid\", ()=>{",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"",
+											"    const schema = {",
+											"        type : 'object',",
+											"        properties : {",
+											"            user : {",
+											"                type : 'object',",
+											"                properties : {",
+											"                    id: {",
+											"                        type : 'integer',",
+											"                        minimum : 0",
+											"                    },",
+											"                    name: {",
+											"                        type : 'string',",
+											"                    },",
+											"                    email: {",
+											"                        type : 'string',",
+											"                    }",
+											"                },",
+											"                 \"required\" : [\"id\",\"name\",\"email\"]",
+											"            },",
+											"        },",
+											"        \"required\" : [\"user\"]",
+											"    }",
+											"    pm.response.to.have.jsonSchema(schema)",
+											"",
+											"    currPass = true",
+											"})",
+											"",
+											"pm.test(\"Set-Cookie is present\", function () {",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"",
+											"    pm.response.to.have.header(\"Set-Cookie\");",
+											"    ",
+											"    const headers = pm.response.headers.get(\"Set-Cookie\")",
+											"    ",
+											"    let a = false",
+											"    headers.split(\";\").map((key_value)=>{",
+											"        if (key_value.split(\"=\").length > 1 && key_value.split(\"=\")[0] === \"gf_clone_auth_token\" && key_value.split(\"=\")[0].length > 10){",
+											"            a = true",
+											"        }",
+											"    })",
+											"",
+											"    pm.expect(a).to.eql(true)",
+											"",
+											"    currPass = true",
+											"});",
+											"",
+											"",
+											"",
+											"// for (let rId in results){",
+											"//     cosnole.log(results[rId].status)",
+											"//     if (results[rId].status === \"fail\") {",
+											"//         allPass = false;",
+											"//         break",
+											"//     }",
+											"// }",
+											"if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"",
+											"if(allPass){",
+											"   const users_str = pm.collectionVariables.get(\"users_details\") || \"[]\"",
+											"    const users = JSON.parse(users_str)",
+											"    const request_body = JSON.parse(pm.request.body.raw)",
+											"    const res = pm.response.json()",
+											"    if(Array.isArray(users)){",
+											"        users.push({",
+											"            \"name\" : request_body.name,",
+											"            \"email\" : request_body.email,",
+											"            \"password\" : request_body.password,",
+											"            \"id\" : res.user.id",
+											"        });",
+											"    }",
+											"    // console.log(users)",
+											"    pm.collectionVariables.set(\"users_details\", JSON.stringify(users))",
+											"}"
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "Negative",
+							"item": [
+								{
+									"name": "Bad Request 400",
+									"item": [
+										{
+											"name": "Register : 400 min name length",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\" : \"a\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"{{$randomPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Register : 400 min password length",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"abcd\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Register : 400 max password length",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"abcdefghijabcdefghija\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Register : 400 max name length",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\" : \"abcdefghijabcdefghija\",\n    \"email\" : \"{{$randomEmail}}\",\n    \"password\" : \"{{$randomPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Register : 400 invalid email",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"email\" : \"{{$randomUserName}}\",\n    \"password\" : \"{{$randomPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Register : 400 invalid fields",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"email\" : \"{{$randomUserName}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Register : 400 invalid fields Copy",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"name\" : \"{{$randomFullName}}\",\n    \"password\" : \"{{$randomPassword}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Register : 400 invalid fields Copy 2",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n   \n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Register : 400 invalid fields Copy 3",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"email\" : \"duggu@gmail.com\",\n    \"password\": \"password\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														""
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Status to be 400\", ()=>{",
+													"     pm.expect(pm.response.code).to.equal(400);",
+													"})"
+												]
+											}
+										}
+									]
+								},
+								{
+									"name": "Register : 409 duplicate email",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Status to be 409\", ()=>{",
+													"     pm.expect(pm.response.code).to.equal(409);",
+													"})"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const users_str = pm.collectionVariables.get(\"users_details\") || \"[]\"",
+													"const users = JSON.parse(users_str)",
+													"",
+													"// console.log(users[0].email)",
+													"if(Array.isArray(users) && users.length > 0 && users[0].email){",
+													"    let requestBody = pm.request.body.toJSON()",
+													"    let body = JSON.parse(requestBody.raw)",
+													"    body.email = users[0].email",
+													"    requestBody.raw = JSON.stringify(body)",
+													"    pm.request.body.update(requestBody)",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\" : \"duggu@gmail.com\",\n    \"password\": \"password\",\n    \"name\" : \"Siddhant\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					],
+					"auth": {
+						"type": "noauth"
+					},
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Positive",
+							"item": [
+								{
+									"name": "Login 200",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const users_str = pm.collectionVariables.get(\"users_details\") || \"[]\"",
+													"const users = JSON.parse(users_str)",
+													"",
+													"// console.log(users)",
+													"const index = Math.round(Math.random()*(users.length - 1))",
+													"// console.log(users[index])",
+													"if(Array.isArray(users) && users.length > index && users[index].email){",
+													"    let requestBody = pm.request.body.toJSON()",
+													"    let body = JSON.parse(requestBody.raw)",
+													"    body.email = users[index].email",
+													"    body.password = users[index].password",
+													"    // console.log(body)",
+													"    requestBody.raw = JSON.stringify(body)",
+													"    pm.request.body.update(requestBody)",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\" : \"something\",\n    \"password\" : \"something\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Login 200 Copy",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const users_str = pm.collectionVariables.get(\"users_details\") || \"[]\"",
+													"const users = JSON.parse(users_str)",
+													"",
+													"// console.log(users)",
+													"const index = Math.round(Math.random()*(users.length - 1))",
+													"// console.log(users[index])",
+													"if(Array.isArray(users) && users.length > index && users[index].email){",
+													"    let requestBody = pm.request.body.toJSON()",
+													"    let body = JSON.parse(requestBody.raw)",
+													"    body.email = users[index].email",
+													"    body.password = users[index].password",
+													"    console.log(body)",
+													"    requestBody.raw = JSON.stringify(body)",
+													"    pm.request.body.update(requestBody)",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\" : \"something\",\n    \"password\" : \"something\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Login 200 Copy 2",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const users_str = pm.collectionVariables.get(\"users_details\") || \"[]\"",
+													"const users = JSON.parse(users_str)",
+													"",
+													"// console.log(users)",
+													"const index = Math.round(Math.random()*(users.length - 1))",
+													"// console.log(users[index])",
+													"if(Array.isArray(users) && users.length > index && users[index].email){",
+													"    let requestBody = pm.request.body.toJSON()",
+													"    let body = JSON.parse(requestBody.raw)",
+													"    body.email = users[index].email",
+													"    body.password = users[index].password",
+													"    console.log(body)",
+													"    requestBody.raw = JSON.stringify(body)",
+													"    pm.request.body.update(requestBody)",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\" : \"something\",\n    \"password\" : \"something\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Login 200 Copy 3",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const users_str = pm.collectionVariables.get(\"users_details\") || \"[]\"",
+													"const users = JSON.parse(users_str)",
+													"",
+													"// console.log(users)",
+													"const index = Math.round(Math.random()*(users.length - 1))",
+													"// console.log(users[index])",
+													"if(Array.isArray(users) && users.length > index && users[index].email){",
+													"    let requestBody = pm.request.body.toJSON()",
+													"    let body = JSON.parse(requestBody.raw)",
+													"    body.email = users[index].email",
+													"    body.password = users[index].password",
+													"    console.log(body)",
+													"    requestBody.raw = JSON.stringify(body)",
+													"    pm.request.body.update(requestBody)",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\" : \"something\",\n    \"password\" : \"something\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var allPass = true",
+											"var currPass = true",
+											"pm.test(\"Response is JSON\", () => {",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+											"",
+											"    currPass = true",
+											"}); ",
+											"",
+											"pm.test(\"Check status 200\", ()=>{",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"    pm.response.to.have.status(200)",
+											"    currPass = true",
+											"})",
+											"",
+											"pm.test(\"User schema is valid\", ()=>{",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"",
+											"    const schema = {",
+											"        type : 'object',",
+											"        properties : {",
+											"            user : {",
+											"                type : 'object',",
+											"                properties : {",
+											"                    id: {",
+											"                        type : 'integer',",
+											"                        minimum : 0",
+											"                    },",
+											"                    name: {",
+											"                        type : 'string',",
+											"                    },",
+											"                    email: {",
+											"                        type : 'string',",
+											"                    }",
+											"                },",
+											"                 \"required\" : [\"id\",\"name\",\"email\"]",
+											"            },",
+											"        },",
+											"        \"required\" : [\"user\"]",
+											"    }",
+											"    pm.response.to.have.jsonSchema(schema)",
+											"",
+											"    currPass = true",
+											"})",
+											"",
+											"pm.test(\"Set-Cookie is present\", function () {",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"",
+											"    pm.response.to.have.header(\"Set-Cookie\");",
+											"    ",
+											"    const headers = pm.response.headers.get(\"Set-Cookie\")",
+											"    ",
+											"    let a = false",
+											"    headers.split(\";\").map((key_value)=>{",
+											"        if (key_value.split(\"=\").length > 1 && key_value.split(\"=\")[0] === \"gf_clone_auth_token\" && key_value.split(\"=\")[0].length > 10){",
+											"            a = true",
+											"        }",
+											"    })",
+											"",
+											"    pm.expect(a).to.eql(true)",
+											"",
+											"    currPass = true",
+											"});",
+											"",
+											"",
+											"",
+											"// for (let rId in results){",
+											"//     cosnole.log(results[rId].status)",
+											"//     if (results[rId].status === \"fail\") {",
+											"//         allPass = false;",
+											"//         break",
+											"//     }",
+											"// }",
+											"if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"",
+											"if(allPass){",
+											"    const request_body = pm.response.json()",
+											"    const user = {",
+											"        \"id\": request_body.user.id,",
+											"        \"name\" : request_body.user.name,",
+											"        \"email\" : request_body.user.email,",
+											"    }",
+											"    // console.log(user)",
+											"    pm.collectionVariables.set(\"currentUser\", JSON.stringify(user))",
+											"}"
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "Negative",
+							"item": [
+								{
+									"name": "Login : 404 incorrect email",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"",
+													"pm.test(\"Check status 404\", ()=>{",
+													"    pm.response.to.have.status(404)",
+													"})",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\" : \"nonsense@email.com\",\n    \"password\" : \"something\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Login : 400 invalid body",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"",
+													"pm.test(\"Check status 400\", ()=>{",
+													"    pm.response.to.have.status(400)",
+													"})",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"password\" : \"something\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Login : 400 invalid body",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const users_str = pm.collectionVariables.get(\"users_details\") || \"[]\"",
+													"const users = JSON.parse(users_str)",
+													"",
+													"// console.log(users)",
+													"const index = Math.round(Math.random()*(users.length - 1))",
+													"// console.log(users[index])",
+													"if(Array.isArray(users) && users.length > index && users[index].email){",
+													"    let requestBody = pm.request.body.toJSON()",
+													"    let body = JSON.parse(requestBody.raw)",
+													"    body.email = users[index].email",
+													"    requestBody.raw = JSON.stringify(body)",
+													"    pm.request.body.update(requestBody)",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"",
+													"pm.test(\"Check status 400\", ()=>{",
+													"    pm.response.to.have.status(400)",
+													"})",
+													"",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\" : \"nonsense@email.com\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Login : 409 wrong password",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const users_str = pm.collectionVariables.get(\"users_details\") || \"[]\"",
+													"const users = JSON.parse(users_str)",
+													"",
+													"// console.log(users)",
+													"const index = Math.round(Math.random()*(users.length - 1))",
+													"// console.log(users[index])",
+													"if(Array.isArray(users) && users.length > index && users[index].email){",
+													"    let requestBody = pm.request.body.toJSON()",
+													"    let body = JSON.parse(requestBody.raw)",
+													"    body.email = users[index].email",
+													"    body.password = \"a wrong password\"",
+													"    console.log(body)",
+													"    requestBody.raw = JSON.stringify(body)",
+													"    pm.request.body.update(requestBody)",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.test(\"Check status 406\", ()=>{",
+													"    pm.response.to.have.status(406)",
+													"})",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\" : \"nonsense@email.com\",\n    \"password\" : \"something\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/login",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"login"
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Set-Cookie is present\", function () {",
+											"    // pm.response.to.have.header(\"Set-Cookie\");",
+											"    ",
+											"    const headers = pm.response.headers.get(\"Set-Cookie\")",
+											"    ",
+											"    if(!headers){",
+											"        pm.expect(true).to.eql(true)",
+											"        return",
+											"    }",
+											"    let a = false",
+											"    headers.split(\";\").map((key_value)=>{",
+											"        if (key_value.split(\"=\").length > 1 && key_value.split(\"=\")[0] === \"gf_clone_auth_token\" && key_value.split(\"=\")[0].length > 10){",
+											"            a = true",
+											"        }",
+											"    })",
+											"",
+											"    pm.expect(a).to.eql(false)",
+											"});",
+											""
+										]
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get forms",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response is JSON\", () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+									"}); ",
+									"",
+									"pm.test(\"Check status 200\", ()=>{",
+									"    pm.response.to.have.status(200)",
+									"})",
+									"",
+									"pm.test(\"User schema is valid\", ()=>{",
+									"    const schema = {",
+									"        type : 'object',",
+									"        properties : {",
+									"            user : {",
+									"                type : 'object',",
+									"                properties : {",
+									"                    id: {",
+									"                        type : 'integer',",
+									"                        minimum : 0",
+									"                    },",
+									"                    name: {",
+									"                        type : 'string',",
+									"                    },",
+									"                    email: {",
+									"                        type : 'string',",
+									"                    }",
+									"                },",
+									"                 \"required\" : [\"id\",\"name\",\"email\"]",
+									"            },",
+									"            formIds : {",
+									"                type : 'array',",
+									"                items : {",
+									"                    type : 'integer'",
+									"                }",
+									"            },",
+									"        },",
+									"        \"required\" : [\"user\",\"formIds\"]",
+									"    }",
+									"    pm.response.to.have.jsonSchema(schema)",
+									"})",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/u",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"u"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Form",
+			"item": [
+				{
+					"name": "Create Form",
+					"item": [
+						{
+							"name": "Positive",
+							"item": [
+								{
+									"name": "Create form : 201",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentences}}\",\n    \"quiz_setting\" : {\n        \"is_quiz\" : true,\n        \"default_points\" : 1\n    },\n    \"response_setting\" : {\n        \"collect_email\" : true,\n        \"allow_edit_res\" : true,\n        \"send_res_copy\" : true\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/f/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"f",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create form : 201 valid description",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/f/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"f",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create form : 201 vaild title min",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"123456\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/f/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"f",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create form : 201 vaild title max",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/f/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"f",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create form : 201 valid quiz_setting",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"quiz_setting\" : {\n        \"default_points\" : 1\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/f/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"f",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create form : 201 valid reqsponse_setting",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"response_setting\" : {\n        \"collect_email\" : false,\n        \"allow_edit_res\" : true\n    }\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/f/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"f",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											""
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var allPass = true",
+											"var currPass = true",
+											"pm.test(\"Response is JSON\", () => {",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+											"",
+											"    currPass = true",
+											"}); ",
+											"",
+											"pm.test(\"Check status 201\", ()=>{",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"    pm.response.to.have.status(201)",
+											"",
+											"    currPass = true",
+											"})",
+											"",
+											"pm.test(\"Form schema is valid\", ()=>{",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"",
+											"    const schema = {",
+											"        type : 'object',",
+											"        properties : {",
+											"            form : {",
+											"                type : 'object',",
+											"                properties : {",
+											"                    id:             { type : 'integer', minimum : 0 },",
+											"                    author_id:      { type : 'integer', minimum : 0 },",
+											"                    title:          { type : 'string' },",
+											"                    description:    { type : 'string' },",
+											"                    quiz_setting: {",
+											"                        type: 'object',",
+											"                        properties : {",
+											"                            is_quiz : { type : 'boolean' },",
+											"                            default_points : { type : 'integer', minimum : 0}",
+											"                        },",
+											"                        required : [\"is_quiz\", \"default_points\"]",
+											"                    },",
+											"                    response_setting: {",
+											"                        type: 'object',",
+											"                        properties : {",
+											"                            collect_email : { type : 'boolean' },",
+											"                            allow_edit_res : { type : 'boolean' },",
+											"                            send_res_copy : { type : 'boolean' },",
+											"                        },",
+											"                        required : [\"send_res_copy\", \"allow_edit_res\", \"collect_email\"]",
+											"                    }",
+											"                },",
+											"                 \"required\" : [\"id\",\"author_id\",\"title\",\"description\",\"quiz_setting\",\"response_setting\"]",
+											"            },",
+											"        },",
+											"        \"required\" : [\"form\"]",
+											"    }",
+											"    pm.response.to.have.jsonSchema(schema)",
+											"",
+											"    currPass = true",
+											"})",
+											"",
+											"if(!currPass){",
+											"    allPass = false",
+											"}",
+											"",
+											"if(allPass){",
+											"   const forms_str = pm.collectionVariables.get(\"forms\") || \"[]\"",
+											"    const forms = JSON.parse(forms_str)",
+											"    const res_form = pm.response.json()",
+											"",
+											"    console.log(res_form)",
+											"    if(Array.isArray(forms)){",
+											"        forms.push({",
+											"            \"id\" : res_form.form.id,",
+											"            \"author_id\" : res_form.form.author_id,",
+											"        });",
+											"    }",
+											"    // console.log(users)",
+											"    pm.collectionVariables.set(\"forms\", JSON.stringify(forms))",
+											"}"
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "Negative",
+							"item": [
+								{
+									"name": "Bad Request",
+									"item": [
+										{
+											"name": "Create form : 400 no title",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"description\" : \"{{$randomLoremSentences}}\",\n    \"quiz_setting\" : {\n        \"is_quiz\" : true,\n        \"default_points\" : 1\n    },\n    \"response_setting\" : {\n        \"collect_email\" : true,\n        \"allow_edit_res\" : true,\n        \"send_res_copy\" : true\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 no title Copy",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 short title",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\" : \"Meoww\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 long title",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\" : \"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 long description",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\" : \"Meowww\",\n    \"description\" : \"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 incomplete quiz_setting",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\" : \"Meowww\",\n    \"description\" : \"{{$randomLoremSentences}}\",\n    \"quiz_setting\" : {\n        \"is_quiz\" : true\n    },\n    \"response_setting\" : {\n        \"collect_email\" : true,\n        \"allow_edit_res\" : true,\n        \"send_res_copy\" : true\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 invalid default points",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\" : \"Meowww\",\n    \"description\" : \"{{$randomLoremSentences}}\",\n    \"quiz_setting\" : {\n        \"is_quiz\" : true,\n        \"default_points\" : 0\n    },\n    \"response_setting\" : {\n        \"collect_email\" : true,\n        \"allow_edit_res\" : true,\n        \"send_res_copy\" : true\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 invalid vailds",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\" : \"Meowww\",\n    \"description\" : \"{{$randomLoremSentences}}\",\n    \"quiz_setting\" : {\n        \"is_quiz\" : true,\n        \"default_points\" : 10\n    },\n    \"response_setting\" : {\n        \"collect_email\" : \"meow\",\n        \"allow_edit_res\" : true,\n        \"send_res_copy\" : true\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 invalid vailds Copy",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\" : \"Meowww\",\n    \"description\" : \"{{$randomLoremSentences}}\",\n    \"quiz_setting\" : {\n        \"is_quiz\" : 12,\n        \"default_points\" : 10\n    },\n    \"response_setting\" : {\n        \"collect_email\" : false,\n        \"allow_edit_res\" : true,\n        \"send_res_copy\" : true\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create form : 400 invalid vailds Copy",
+											"request": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"title\" : \"Meowww\",\n    \"description\" : \"{{$randomLoremSentences}}\",\n    \"quiz_setting\" : {\n        \"is_quiz\" : true,\n        \"default_points\" : 10\n    },\n    \"response_setting\" : {\n        \"collect_email\" : false,\n        \"allow_edit_res\" : 1,\n        \"send_res_copy\" : false\n    }\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/f/",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"f",
+														""
+													]
+												}
+											},
+											"response": []
+										}
+									],
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													""
+												]
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"type": "text/javascript",
+												"exec": [
+													"pm.test(\"Check status 400\", ()=>{",
+													"    pm.response.to.have.status(400)",
+													"})"
+												]
+											}
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Create Question",
+					"item": [
+						{
+							"name": "Positive",
+							"item": [
+								{
+									"name": "Create Question : 201",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentence}}\",\n    \"is_required\" : true,\n    \"points\" : 1,\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\",\n    \"options\" : [\"1\",\"2\",\"3\",\"4\"],\n    \"correct_ans\" : [\"1\"]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 minimum fields",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"index_at\" : 0\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 maximum limimts",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"",
+													"// console.log(request_body)",
+													"request_body.options = []",
+													"request_body.correct_ans = []",
+													"for(let i=0; i<99; i++){",
+													"    let str = pm.variables.replaceIn(\"{{$randomWord}}\")",
+													"    request_body.options.push(str)",
+													"    request_body.correct_ans.push(str)",
+													"}",
+													"",
+													"const requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"index_at\" : 10000,\n    \"title\" : \"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\",\n    \"description\" : \"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\",\n    \"points\" : 100,\n    \"ques_type\" : \"checkbox\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 Copy random input options",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"console.log(\"meow\", request_body)",
+													"const qTypes = ['dropdown','mcq', 'checkbox'] //'short','long',",
+													"",
+													"request_body.is_required = Boolean(Math.round(Math.random()))",
+													"request_body.ques_type = qTypes[Math.floor(Math.random()*3)]",
+													"request_body.index_at = Math.round(Math.random()*20)",
+													"request_body.points = Math.round(Math.random()*20)",
+													"",
+													"// console.log(\"meow 2 :\", request_body)",
+													"",
+													"const ques_type = request_body.ques_type",
+													"",
+													"if (ques_type === 'mcq' || ques_type === 'checkbox' || ques_type === 'dropdown'){",
+													"    let max = Math.round(Math.random()*9) + 1",
+													"    request_body.options = []",
+													"    for(let i=0; i<max; i++){",
+													"        request_body.options.push(pm.variables.replaceIn(\"{{$randomWord}}\"))",
+													"    }",
+													"    // console.log(\"options :\" , request_body.options)",
+													"}",
+													"if(ques_type === 'mcq' || ques_type === 'dropdown'){",
+													"    let options_length = request_body.options.length",
+													"    request_body.correct_ans = [ request_body.options[Math.floor(Math.random()*options_length)] ]",
+													"    // console.log(\"correct_ans single : \",rmeowequest_body.correct_ans)",
+													"}",
+													"if(ques_type === 'checkbox'){",
+													"    options_length = request_body.options.length",
+													"    let min = Math.round(Math.random()*options_length) ",
+													"    max = Math.round(Math.random()*(options_length - min)) ",
+													"    request_body.correct_ans = request_body.options.slice(min, min+max)",
+													"    console.log(\"correct_ans :\",request_body.correct_ans)",
+													"}",
+													"",
+													"// console.log(request_body)",
+													"const requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentence}}\",\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 Copy random input options Copy",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"console.log(\"meow\", request_body)",
+													"const qTypes = ['dropdown','mcq', 'checkbox'] //'short','long',",
+													"",
+													"request_body.is_required = Boolean(Math.round(Math.random()))",
+													"request_body.ques_type = qTypes[Math.floor(Math.random()*3)]",
+													"request_body.index_at = Math.round(Math.random()*20)",
+													"request_body.points = Math.round(Math.random()*20)",
+													"",
+													"// console.log(\"meow 2 :\", request_body)",
+													"",
+													"const ques_type = request_body.ques_type",
+													"",
+													"if (ques_type === 'mcq' || ques_type === 'checkbox' || ques_type === 'dropdown'){",
+													"    let max = Math.round(Math.random()*9) + 1",
+													"    request_body.options = []",
+													"    for(let i=0; i<max; i++){",
+													"        request_body.options.push(pm.variables.replaceIn(\"{{$randomWord}}\"))",
+													"    }",
+													"    // console.log(\"options :\" , request_body.options)",
+													"}",
+													"if(ques_type === 'mcq' || ques_type === 'dropdown'){",
+													"    let options_length = request_body.options.length",
+													"    request_body.correct_ans = [ request_body.options[Math.floor(Math.random()*options_length)] ]",
+													"    // console.log(\"correct_ans single : \",rmeowequest_body.correct_ans)",
+													"}",
+													"if(ques_type === 'checkbox'){",
+													"    options_length = request_body.options.length",
+													"    let min = Math.round(Math.random()*options_length) ",
+													"    max = Math.round(Math.random()*(options_length - min)) ",
+													"    request_body.correct_ans = request_body.options.slice(min, min+max)",
+													"    console.log(\"correct_ans :\",request_body.correct_ans)",
+													"}",
+													"",
+													"// console.log(request_body)",
+													"const requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentence}}\",\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 Copy random input options Copy 2",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"console.log(\"meow\", request_body)",
+													"const qTypes = ['dropdown','mcq', 'checkbox'] //'short','long',",
+													"",
+													"request_body.is_required = Boolean(Math.round(Math.random()))",
+													"request_body.ques_type = qTypes[Math.floor(Math.random()*3)]",
+													"request_body.index_at = Math.round(Math.random()*20)",
+													"request_body.points = Math.round(Math.random()*20)",
+													"",
+													"// console.log(\"meow 2 :\", request_body)",
+													"",
+													"const ques_type = request_body.ques_type",
+													"",
+													"if (ques_type === 'mcq' || ques_type === 'checkbox' || ques_type === 'dropdown'){",
+													"    let max = Math.round(Math.random()*9) + 1",
+													"    request_body.options = []",
+													"    for(let i=0; i<max; i++){",
+													"        request_body.options.push(pm.variables.replaceIn(\"{{$randomWord}}\"))",
+													"    }",
+													"    // console.log(\"options :\" , request_body.options)",
+													"}",
+													"if(ques_type === 'mcq' || ques_type === 'dropdown'){",
+													"    let options_length = request_body.options.length",
+													"    request_body.correct_ans = [ request_body.options[Math.floor(Math.random()*options_length)] ]",
+													"    // console.log(\"correct_ans single : \",rmeowequest_body.correct_ans)",
+													"}",
+													"if(ques_type === 'checkbox'){",
+													"    options_length = request_body.options.length",
+													"    let min = Math.round(Math.random()*options_length) ",
+													"    max = Math.round(Math.random()*(options_length - min)) ",
+													"    request_body.correct_ans = request_body.options.slice(min, min+max)",
+													"    console.log(\"correct_ans :\",request_body.correct_ans)",
+													"}",
+													"",
+													"// console.log(request_body)",
+													"const requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentence}}\",\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 Copy random input options Copy 3",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"console.log(\"meow\", request_body)",
+													"const qTypes = ['dropdown','mcq', 'checkbox'] //'short','long',",
+													"",
+													"request_body.is_required = Boolean(Math.round(Math.random()))",
+													"request_body.ques_type = qTypes[Math.floor(Math.random()*3)]",
+													"request_body.index_at = Math.round(Math.random()*20)",
+													"request_body.points = Math.round(Math.random()*20)",
+													"",
+													"// console.log(\"meow 2 :\", request_body)",
+													"",
+													"const ques_type = request_body.ques_type",
+													"",
+													"if (ques_type === 'mcq' || ques_type === 'checkbox' || ques_type === 'dropdown'){",
+													"    let max = Math.round(Math.random()*9) + 1",
+													"    request_body.options = []",
+													"    for(let i=0; i<max; i++){",
+													"        request_body.options.push(pm.variables.replaceIn(\"{{$randomWord}}\"))",
+													"    }",
+													"    // console.log(\"options :\" , request_body.options)",
+													"}",
+													"if(ques_type === 'mcq' || ques_type === 'dropdown'){",
+													"    let options_length = request_body.options.length",
+													"    request_body.correct_ans = [ request_body.options[Math.floor(Math.random()*options_length)] ]",
+													"    // console.log(\"correct_ans single : \",rmeowequest_body.correct_ans)",
+													"}",
+													"if(ques_type === 'checkbox'){",
+													"    options_length = request_body.options.length",
+													"    let min = Math.round(Math.random()*options_length) ",
+													"    max = Math.round(Math.random()*(options_length - min)) ",
+													"    request_body.correct_ans = request_body.options.slice(min, min+max)",
+													"    console.log(\"correct_ans :\",request_body.correct_ans)",
+													"}",
+													"",
+													"// console.log(request_body)",
+													"const requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentence}}\",\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 Copy text",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"const qTypes = ['short','long'] //'short','long',",
+													"",
+													"request_body.is_required = Boolean(Math.round(Math.random()))",
+													"request_body.ques_type = qTypes[Math.floor(Math.random()*2)]",
+													"request_body.index_at = Math.round(Math.random()*20)",
+													"request_body.points = Math.round(Math.random()*20)",
+													"",
+													"// console.log(\"meow 2 :\", request_body)",
+													"",
+													"requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentence}}\",\n    \"is_required\" : true,\n    \"points\" : 1,\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 Copy text Copy",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"const qTypes = ['short','long'] //'short','long',",
+													"",
+													"request_body.is_required = Boolean(Math.round(Math.random()))",
+													"request_body.ques_type = qTypes[Math.floor(Math.random()*2)]",
+													"request_body.index_at = Math.round(Math.random()*20)",
+													"request_body.points = Math.round(Math.random()*20)",
+													"",
+													"// console.log(\"meow 2 :\", request_body)",
+													"",
+													"requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentence}}\",\n    \"is_required\" : true,\n    \"points\" : 1,\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 201 Copy text Copy 2",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"const qTypes = ['short','long'] //'short','long',",
+													"",
+													"request_body.is_required = Boolean(Math.round(Math.random()))",
+													"request_body.ques_type = qTypes[Math.floor(Math.random()*2)]",
+													"request_body.index_at = Math.round(Math.random()*20)",
+													"request_body.points = Math.round(Math.random()*20)",
+													"",
+													"// console.log(\"meow 2 :\", request_body)",
+													"",
+													"requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"{{$randomLoremSentence}}\",\n    \"description\" : \"{{$randomLoremSentence}}\",\n    \"is_required\" : true,\n    \"points\" : 1,\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"const forms_str = pm.collectionVariables.get(\"currFormId\") || \"\"",
+											"var form_id = parseInt(forms_str)",
+											"",
+											"if (forms_str === \"\" || !forms_str) {",
+											"    const forms_str = pm.collectionVariables.get(\"forms\") || \"[]\"",
+											"    const forms = JSON.parse(forms_str) ",
+											"",
+											"    index = Math.round(Math.random()*(forms.length - 1))",
+											"    console.log(forms, index, forms[index], forms)",
+											"    form_id = forms[index].id",
+											"    pm.collectionVariables.set(\"currFormId\", form_id)",
+											"}",
+											"",
+											"console.log(form_id, typeof form_id)",
+											"",
+											"let requestBody = pm.request.body.toJSON()",
+											"let body = JSON.parse(requestBody.raw)",
+											"body.form_id = form_id",
+											"",
+											"requestBody.raw = JSON.stringify(body)",
+											"pm.request.body.update(requestBody)"
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"var allPass = true",
+											"var currPass = true",
+											"pm.test(\"Response is JSON\", () => {",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');",
+											"",
+											"    currPass = true",
+											"}); ",
+											"",
+											"pm.test(\"Check status 201\", ()=>{",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"    pm.response.to.have.status(201)",
+											"",
+											"    currPass = true",
+											"})",
+											"",
+											"pm.test(\"Question schema is valid\", ()=>{",
+											"    if(!currPass){",
+											"        allPass = false",
+											"    }",
+											"    currPass = false",
+											"",
+											"    const schema = {",
+											"        type : 'object',",
+											"        properties : {",
+											"            question : {",
+											"                type : 'object',",
+											"                properties : {",
+											"                    id:             { type : 'integer', minimum : 0 },",
+											"                    author_id:      { type : 'integer', minimum : 0 },",
+											"                    form_id:        { type : 'integer', minimum : 0 },",
+											"                    index_at:       { type : 'integer', minimum : 0 },",
+											"                    points:         { type : 'integer', minimum : 0 },",
+											"                    title:          { type : 'string' },",
+											"                    description:    { type : 'string' },",
+											"                    ques_type:      { enum : ['mcq', 'checkbox', 'short', 'long', 'dropdown'] },",
+											"                    is_required:    { type : 'boolean'},",
+											"                    options:        {",
+											"                        type : ['array', 'null'], ",
+											"                        items : {type : 'string' }",
+											"                    },",
+											"                    correct_ans:        {",
+											"                        type : ['array', 'null'],",
+											"                        items : {type : 'string' }",
+											"                    }",
+											"                },",
+											"                 \"required\" : [\"id\",\"author_id\",\"title\",\"description\",\"form_id\",\"index_at\",\"is_required\",\"ques_type\"]",
+											"            },",
+											"        },",
+											"        \"required\" : [\"question\"]",
+											"    }",
+											"    pm.response.to.have.jsonSchema(schema)",
+											"",
+											"    currPass = true",
+											"})",
+											"",
+											"if(!currPass){",
+											"    allPass = false",
+											"}",
+											"",
+											"if(allPass){",
+											"   const ques_str = pm.collectionVariables.get(\"questions_arr\") || \"[]\"",
+											"    const ques = JSON.parse(ques_str)",
+											"    const res_ques = pm.response.json()",
+											"",
+											"    if(Array.isArray(ques)){",
+											"        ques.push(res_ques.question.id);",
+											"    }",
+											"    // console.log(users)",
+											"    pm.collectionVariables.set(\"questions_arr\", JSON.stringify(ques))",
+											"}"
+										]
+									}
+								}
+							]
+						},
+						{
+							"name": "400 Bad request",
+							"item": [
+								{
+									"name": "Create Question : 400 title",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"title\" : \"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901\",\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 description",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"description\" : \"12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901\",\n    \"index_at\" : 0,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 indexAt",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"description\" : \"1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\",\n    \"index_at\" : -1,\n    \"ques_type\" : \"short\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 quesType",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"description\" : \"\",\n    \"index_at\" : 0,\n    \"ques_type\" : \"{{$randomWord}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 points",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"points\" : -1,\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 options",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"",
+													"// console.log(request_body)",
+													"request_body.options = []",
+													"request_body.correct_ans = []",
+													"for(let i=0; i<100; i++){",
+													"    let str = pm.variables.replaceIn(\"{{$randomWord}}\")",
+													"    request_body.options.push(str)",
+													"}",
+													"",
+													"const requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"points\" : -1,\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 options string length",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\",\n    \"options\" : [\"123456789012345678901\"]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 correct_ans string length",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\",\n    \"options\" : [\"12345678901234567890\"],\n    \"correct_ans\" : [\"123456789012345678901\"]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 correct_ans",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"const request_body = JSON.parse(pm.request.body.raw)",
+													"",
+													"// console.log(request_body)",
+													"request_body.options = []",
+													"request_body.correct_ans = []",
+													"for(let i=0; i<100; i++){",
+													"    let str = pm.variables.replaceIn(\"{{$randomWord}}\")",
+													"    request_body.correct_ans.push(str)",
+													"}",
+													"",
+													"const requestBody = pm.request.body",
+													"requestBody.raw = JSON.stringify(request_body)",
+													"pm.request.body.update(requestBody)",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"points\" : -1,\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 invalid types : options",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\",\n    \"options\" : [1, 2,3]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 invalid types : is_required",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\",\n    \"is_required\" : \"true\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create Question : 400 invalid types : points",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"index_at\" : 0,\n    \"ques_type\" : \"mcq\",\n    \"points\" : \"0\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/q/",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"q",
+												""
+											]
+										}
+									},
+									"response": []
+								}
+							],
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"const forms_str = pm.collectionVariables.get(\"currFormId\") || \"\"",
+											"var form_id = parseInt(forms_str)",
+											"",
+											"if (forms_str === \"\" || !forms_str) {",
+											"    const forms_str = pm.collectionVariables.get(\"forms\") || \"[]\"",
+											"    const forms = JSON.parse(forms_str) ",
+											"",
+											"    index = Math.round(Math.random()*(forms.length - 1))",
+											"    console.log(forms, index, forms[index], forms)",
+											"    form_id = forms[index].id",
+											"    pm.collectionVariables.set(\"currFormId\", form_id)",
+											"}",
+											"",
+											"",
+											"",
+											"let requestBody = pm.request.body.toJSON()",
+											"let body = JSON.parse(requestBody.raw)",
+											"body.form_id = form_id",
+											"",
+											"requestBody.raw = JSON.stringify(body)",
+											"pm.request.body.update(requestBody)"
+										]
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"type": "text/javascript",
+										"exec": [
+											"pm.test(\"Check status 400\", ()=>{",
+											"    pm.response.to.have.status(400)",
+											"})"
+										]
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Question Seq",
+					"item": [
+						{
+							"name": "Get questions",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"Meow\")",
+											"",
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"console.log(\"Simon\")"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/f/q/{{formId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"f",
+										"q",
+										"{{formId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit question sequence",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n    3,\n    5,\n    4,\n    2\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/f/q/{{formId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"f",
+										"q",
+										"{{formId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create new form",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"Am I the cutest cat?\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/f",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get form",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/f/{{formId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"f",
+								"{{formId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Form",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \n    \"description\" : \"This is a survey of me\",\n    \"quiz_setting\" : {\n        \"default_points\" : 11\n    },\n    \"response_setting\" : {\n        \"collect_email\": false,\n        \"allow_edit_res\": true\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/f/{{formId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"f",
+								"{{formId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Form",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/f/84",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"f",
+								"84"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Question",
+			"item": [
+				{
+					"name": "Create new question",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"form_id\" : 85,\n    \"index_at\" : 1,\n    \"title\" : \"Least imp\",\n    \"ques_type\" : \"long\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/q/{{formId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"q",
+								"{{formId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Valid Question 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"form_id\" : 85,\n    \"index_at\" : 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/q/{{formId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"q",
+										"{{formId}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successful\",\n    \"newQues\": {\n        \"form_id\": 85,\n        \"author_id\": 91,\n        \"index_at\": 1\n    },\n    \"question\": {\n        \"id\": 6,\n        \"is_required\": true,\n        \"ques_type\": \"mcq\",\n        \"title\": \"Untitled question\",\n        \"description\": \"\",\n        \"options\": null,\n        \"correct_ans\": null,\n        \"points\": 1,\n        \"author_id\": 91,\n        \"form_id\": 85,\n        \"index_at\": 1\n    }\n}"
+						},
+						{
+							"name": "Valid Question 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"form_id\" : 85,\n    \"index_at\" : 1,\n    \"title\" : \"What is your occupation\",\n    \"ques_type\" : \"mcq\",\n    \"options\" : [\n        \"doctor\",\n        \"web developer\",\n        \"engineer\",\n        \"cat lover\"\n    ],\n    \"correct_ans\" : [\"cat lover\"],\n    \"description\" : \"This is stupid question\",\n    \"points\" : 2,\n    \"is_required\" : false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/q/{{formId}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"q",
+										"{{formId}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successful\",\n    \"newQues\": {\n        \"ques_type\": \"mcq\",\n        \"title\": \"What is your occupation\",\n        \"description\": \"This is stupid question\",\n        \"options\": [\n            \"doctor\",\n            \"web developer\",\n            \"engineer\",\n            \"cat lover\"\n        ],\n        \"correct_ans\": [\n            \"cat lover\"\n        ],\n        \"points\": 2,\n        \"form_id\": 85,\n        \"author_id\": 91,\n        \"index_at\": 1\n    },\n    \"question\": {\n        \"id\": 8,\n        \"is_required\": true,\n        \"ques_type\": \"mcq\",\n        \"title\": \"What is your occupation\",\n        \"description\": \"This is stupid question\",\n        \"options\": [\n            \"doctor\",\n            \"web developer\",\n            \"engineer\",\n            \"cat lover\"\n        ],\n        \"correct_ans\": [\n            \"cat lover\"\n        ],\n        \"points\": 2,\n        \"author_id\": 91,\n        \"form_id\": 85,\n        \"index_at\": 1\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/q/{{questionId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"q",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Question",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\" : \"New title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/q/{{questionId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"q",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Question",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/q/{{questionId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"q",
+								"{{questionId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Responses",
+			"item": [
+				{
+					"name": "New Response",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"answers\" : {\n        \"2\" : [\"Something\", \"Nothing\", \"bla bla\"],\n        \"3\" : [\"Something\", \"One more\"],\n        \"4\" : [\"Blal bla \"],\n        \"5\" : [\"Meow Meow Meow Meow\"]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/r/{{formId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"r",
+								"{{formId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get responses",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "formId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "questionId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "users_details",
+			"value": ""
+		},
+		{
+			"key": "currentUser",
+			"value": ""
+		},
+		{
+			"key": "forms",
+			"value": ""
+		},
+		{
+			"key": "currFormId",
+			"value": ""
+		},
+		{
+			"key": "questions_arr",
+			"value": ""
+		}
+	]
+}

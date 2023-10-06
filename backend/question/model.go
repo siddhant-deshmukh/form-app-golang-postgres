@@ -32,20 +32,20 @@ type NewQuestion struct {
 	QuesType    string         `json:"ques_type,omitempty" validate:"omitempty,oneof=mcq checkbox short long dropdown date time"`
 	Title       string         `json:"title,omitempty" validate:"omitempty,max=100,min=1"`
 	Description string         `json:"description,omitempty" validate:"omitempty,max=100"`
-	Options     pq.StringArray `json:"options,omitempty" validate:"omitempty,max=100"`
-	CorrectAns  pq.StringArray `json:"correct_ans,omitempty" validate:"omitempty,max=100"`
-	Points      uint           `json:"points,omitempty" validate:"omitempty,min=1"`
+	Options     pq.StringArray `json:"options,omitempty" validate:"omitempty,max=99,dive,max=20"`
+	CorrectAns  pq.StringArray `json:"correct_ans,omitempty" validate:"omitempty,max=99,dive,max=20"`
+	Points      uint           `json:"points,omitempty" validate:"omitempty,min=1,max=100"`
 	FormID      uint           `json:"form_id,omitempty" validate:"required,min=0"`
 	AuthorID    uint           `json:"author_id,omitempty" validate:"required,min=0"`
-	IndexAt     uint           `json:"index_at,omitempty" validate:"required,min=0"`
+	IndexAt     uint           `json:"index_at" validate:"min=0"`
 }
 type EditQuestion struct {
 	IsRequired  bool     `json:"is_required,omitempty" validate:"boolean"`
 	QuesType    string   `json:"ques_type,omitempty" validate:"omitempty,oneof=mcq checkbox short long dropdown date time"`
 	Title       string   `json:"title,omitempty" validate:"omitempty,max=100,min=1"`
 	Description string   `json:"description,omitempty" validate:"omitempty,max=100"`
-	Options     []string `json:"options" validate:"omitempty,max=100"`
-	CorrectAns  []string `json:"correct_ans" validate:"omitempty,max=100"`
+	Options     []string `json:"options" validate:"omitempty,max=99"`
+	CorrectAns  []string `json:"correct_ans" validate:"omitempty,max=99"`
 	Points      uint     `json:"points,omitempty" validate:"omitempty,min=1"`
 }
 type QuestionWithOutAnswer struct {

@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/fvbock/endless"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/siddhant-deshmukh/google-form-clone-gin-postgres/form"
@@ -54,6 +55,14 @@ func SetUpDB(db *gorm.DB) {
 }
 
 func SetUpRoutes(router *gin.Engine) {
+
+	router.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:5173"},
+		AllowMethods:     []string{"PUT", "GET", "POST", "DELETE", "OPTIONS", "PATCH"},
+		AllowHeaders:     []string{"Content-Type", "Cookie", "Authorization", "Access-Control-Request-Headers", "Access-Control-Request-Method", "Origin", "Referer", "Sec-Fetch-Dest", "Accept-Language", "Accept-Encoding", "Sec-Fetch-Mode", "Sec-Fetch-Site", "User-Agent", "Pragma", "Host", "Connection", "Cache-Control", "Accept-Language", "Accept-Encoding", "X-Requested-With", "X-Forwarded-For", "X-Forwarded-Host", "X-Forwarded-Proto", "X-Forwarded-Port", "X-Forwarded-Prefix", "X-Real-IP", "Accept"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+	}))
 
 	userAuthRoutesGroup := router.Group("/")
 	user.RegisterUserAuthRoutes(userAuthRoutesGroup)

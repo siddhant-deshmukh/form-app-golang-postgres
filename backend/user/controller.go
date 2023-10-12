@@ -22,8 +22,8 @@ func getData(c *gin.Context) {
 		return
 	}
 
-	var forms []uint
-	result := db.Model(form.Form{}).Select("id").Where("author_id = ?", user_id).Find(&forms)
+	var forms []form.FormSnippets
+	result := db.Model(form.Form{}).Where("author_id = ?", user_id).Order("updated_at DESC").Find(&forms)
 	if result.Error != nil {
 		fmt.Println(result.Error.Error())
 
@@ -35,8 +35,8 @@ func getData(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{
-		"user":    user,
-		"formIds": forms,
+		"user":  user,
+		"forms": forms,
 	})
 }
 

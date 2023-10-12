@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --side-btn-height: 100px
+}
+.side-button {
+  left : calc(50% + 350px);
+  top : var(--side-btn-height);
+  /* top : clamp(5vh,var(--side-btn-height),95vh); */
+  transition: 0.25s;
+}
+@media (max-width : 800px){
+  .side-button {
+      left : calc(50% + 300px);
+      top : var(--side-btn-height);
+      /* top : clamp(5vh,var(--side-btn-height),95vh); */
+      transition: 0.25s;
+  }
+}
+.dragging {
+  opacity: 0.7;
+  overflow-y: hidden;
+}

@@ -20,7 +20,7 @@ func createForm(c *gin.Context) {
 	user_id := c.MustGet("user_id").(uint)
 	err := c.BindJSON(&newForm)
 
-	fmt.Println("\n\n : \t", "to create new form", "\n ")
+	// fmt.Println("\n\n : \t", "to create new form", "\n ")
 
 	if err != nil {
 		fmt.Println("\nerror : \t", err.Error(), "\n ")
@@ -70,7 +70,7 @@ func getFormById(c *gin.Context) {
 		return
 	}
 
-	result := db.Where("id = ?", formId).Model(&Form{}).Find(&form)
+	result := db.Where("id = ?", formId).Find(&form)
 	if result.Error == gorm.ErrRecordNotFound || result.RowsAffected == 0 {
 		c.JSON(http.StatusNotFound, gin.H{
 			"message": "While creating result",
@@ -87,7 +87,7 @@ func getFormById(c *gin.Context) {
 	isAuthor = user_id == form.AuthorID
 
 	if isAuthor {
-		c.JSON(http.StatusCreated, gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"form": form,
 		})
 	} else {
@@ -251,7 +251,6 @@ func getQuestions(c *gin.Context) {
 		})
 		return
 	}
-
 	if question_seq.AuthorID != user_id {
 		questions := make(map[int]question.QuestionWithOutAnswer)
 		for _, qId := range question_seq.QuestionSeq {
@@ -261,8 +260,8 @@ func getQuestions(c *gin.Context) {
 			}
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"questions_seq": question_seq.QuestionSeq,
-			"questions":     questions,
+			"que_seq":   question_seq.QuestionSeq,
+			"questions": questions,
 		})
 	} else {
 		questions := make(map[int]question.Question)
@@ -273,8 +272,8 @@ func getQuestions(c *gin.Context) {
 			}
 		}
 		c.JSON(http.StatusOK, gin.H{
-			"questions_seq": question_seq.QuestionSeq,
-			"questions":     questions,
+			"que_seq":   question_seq.QuestionSeq,
+			"questions": questions,
 		})
 	}
 }
@@ -322,7 +321,12 @@ func postQuestions(c *gin.Context) {
 		return
 	}
 
-	if !areArrayEqual(queSeq.QuestionSeq, questionSeq) {
+	queSeqCopy := make([]int, len(questionSeq))
+	// for i, v := range questionSeq {
+	// 	queSeqCopy[i] = v
+	// }
+	copy(queSeqCopy, questionSeq)
+	if !areArrayEqual(queSeq.QuestionSeq, queSeqCopy) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"message": "doesn't match old sequance",
 		})
@@ -349,7 +353,7 @@ func SetFormTable(gormDB *gorm.DB) {
 
 func areArrayEqual(arr1 []int64, arr2 []int) bool {
 	var arr3 []int
-	for _, v := range arr1 {
+	for _, v := range arr2 {
 		arr3 = append(arr3, int(v)) // cast each element of a to int and append it to b
 	}
 	sort.Ints(arr3)

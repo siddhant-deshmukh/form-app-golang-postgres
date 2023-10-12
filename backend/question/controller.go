@@ -2,6 +2,7 @@ package question
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -91,6 +92,7 @@ func editQuestion(c *gin.Context) {
 	user_id := c.MustGet("user_id").(uint) // getting user_id from the AuthUserMiddleware
 
 	// converting edit question to a mapGetFieldFromUrl
+
 	jsonData, err := json.Marshal(editQue)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -99,8 +101,10 @@ func editQuestion(c *gin.Context) {
 		})
 		return
 	}
+
 	var que_map map[string]interface{}
 	err = json.Unmarshal(jsonData, &que_map)
+
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "While reading form",
@@ -113,9 +117,15 @@ func editQuestion(c *gin.Context) {
 		if value != nil {
 			keys = append(keys, key)
 			if key == "options" {
-				que_map[key] = gorm.Expr("ARRAY[ ? ]", utils.ArrayToString(editQue.Options))
+				fmt.Println(que_map[key])
+				options := que_map["options"].([]interface{}) //not using []string because the array might be empty
+				if len(options) != 0 {
+					que_map[key] = gorm.Expr("ARRAY[" + utils.ArrayToString(editQue.Options) + "]")
+				} else {
+					que_map[key] = gorm.Expr("'{}'")
+				}
 			} else if key == "correct_ans" {
-				que_map[key] = gorm.Expr("ARRAY[ ? ]", utils.ArrayToString(editQue.CorrectAns))
+				que_map[key] = gorm.Expr("ARRAY[" + utils.ArrayToString(editQue.CorrectAns) + "]")
 			}
 		}
 	}

@@ -92,15 +92,15 @@ func ArrayToString(arr []string) string {
 	if len(arr) <= 0 {
 		return ""
 	} else if len(arr) == 1 {
-		return arr[0]
+		return "'" + arr[0] + "'"
 	} else if len(arr) == 2 {
-		return arr[0] + ", " + arr[1]
+		return "'" + arr[0] + "', '" + arr[1] + "'"
 	} else {
 
-		str := arr[0] + ", "
-		for i := 0; i < len(arr)-1; i++ {
-			str += arr[i] + ", "
+		str := "'" + arr[0] + "', "
+		for i := 1; i < len(arr)-1; i++ {
+			str += "'" + arr[i] + "', "
 		}
-		return str + arr[len(arr)-1]
+		return str + "'" + arr[len(arr)-1] + "'"
 	}
 }

@@ -1,5 +1,18 @@
 package form
 
+import "time"
+
+type FormSnippets struct {
+	ID               uint              `json:"id"`
+	AuthorID         uint              `json:"author_id"`
+	Title            string            `json:"title"`
+	Description      string            `json:"description"`
+	Quiz_Setting     *Quiz_Setting     `json:"quiz_setting"`
+	Response_Setting *Response_Setting `json:"response_setting"`
+	CreatedAt        time.Time         `json:"created_at"`
+	UpdatedAt        time.Time         `json:"updated_at"`
+}
+
 type NewForm struct {
 	Title            string                `json:"title" validate:"required,min=6,max=100"`
 	Description      string                `json:"description,omitempty" validate:"omitempty,max=300"`

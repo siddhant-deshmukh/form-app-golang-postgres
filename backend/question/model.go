@@ -17,7 +17,7 @@ type Question struct {
 	QuesType    string         `json:"ques_type" gorm:"check:ques_type IN ('mcq','checkbox','short','long','dropdown','date','time','eliminated');default:'mcq'; not null"`
 	Title       string         `json:"title" gorm:"type:varchar(100); check:char_length(title) > 0; default:'Untitled question'; not null"`
 	Description string         `json:"description" gorm:"type:varchar(200); default:''; not null"`
-	Options     pq.StringArray `json:"options" gorm:"type:text[]; check:array_length(options, 1) < 100"`
+	Options     pq.StringArray `json:"options" gorm:"type:text[]; default:'{\"Option 1\"}'; check:array_length(options, 1) < 100"`
 	CorrectAns  pq.StringArray `json:"correct_ans" gorm:"type:text[]; check:array_length(correct_ans, 1) < 100"`
 	Points      uint           `json:"points" gorm:"check:points > 0; default: 1 "`
 	AuthorID    uint           `json:"author_id" gorm:"not null"`
@@ -40,7 +40,7 @@ type NewQuestion struct {
 	IndexAt     uint           `json:"index_at" validate:"min=0"`
 }
 type EditQuestion struct {
-	IsRequired  bool     `json:"is_required,omitempty" validate:"boolean"`
+	IsRequired  bool     `json:"is_required" validate:"boolean"`
 	QuesType    string   `json:"ques_type,omitempty" validate:"omitempty,oneof=mcq checkbox short long dropdown date time"`
 	Title       string   `json:"title,omitempty" validate:"omitempty,max=100,min=1"`
 	Description string   `json:"description,omitempty" validate:"omitempty,max=100"`

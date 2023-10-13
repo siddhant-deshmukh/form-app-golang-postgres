@@ -132,16 +132,16 @@ func editQuestion(c *gin.Context) {
 	// fmt.Println("\n\n", keys, "\n\n", que_map, "\n\n ")
 
 	question := Question{ID: qId, AuthorID: user_id}
-	result := db.Model(Question{ID: qId, AuthorID: user_id}).Select(keys).Updates(que_map).Scan(&question)
+	result := db.Model(&Question{ID: qId}).Select(keys).Where("author_id = ?", user_id).Updates(que_map).Scan(&question)
 
-	if result.Error != nil {
+	if result.RowsAffected == 0 || result.Error == gorm.ErrRecordNotFound {
+		c.JSON(http.StatusNotFound, gin.H{
+			"message": "While updating question",
+		})
+	} else if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"message": "While updating question",
 			"err":     result.Error.Error(),
-		})
-	} else if result.RowsAffected == 0 {
-		c.JSON(http.StatusNotFound, gin.H{
-			"message": "While updating question",
 		})
 	} else {
 		c.JSON(http.StatusOK, gin.H{
@@ -220,7 +220,7 @@ func getQuestions(c *gin.Context) {
 		} else {
 			c.JSON(http.StatusAccepted, gin.H{
 				"message": "Successfully deleted",
-				"question": QuestionWithOutAnswer{
+				"question": QuestionForNonAuthor{
 					ID:          question.ID,
 					IsRequired:  question.IsRequired,
 					QuesType:    question.QuesType,

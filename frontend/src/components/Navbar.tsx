@@ -97,12 +97,13 @@ export const Navbar = (
                   onClick={(event) => {
                     event.preventDefault();
                     //@ts-ignore
-                    axios.get(`${import.meta.env.VITE_API_URL}/logout`, { withCredentials: true })
+                    axios.delete(`${import.meta.env.VITE_API_URL}/`, { withCredentials: true })
                       .then((res) => {
                         if (res.data) {
                           dispatch(removeUser())
                         }
                       })
+                    dispatch(removeUser())
                   }}
                 >
                   Logout

@@ -252,10 +252,11 @@ func getQuestions(c *gin.Context) {
 		return
 	}
 	if question_seq.AuthorID != user_id {
-		questions := make(map[int]question.QuestionWithOutAnswer)
+		questions := make(map[int]question.QuestionForNonAuthor)
 		for _, qId := range question_seq.QuestionSeq {
-			temp_ques := question.QuestionWithOutAnswer{}
-			if result := db.Model(&question.Question{ID: uint(qId)}).First(&temp_ques); result.Error == nil && result.RowsAffected > 0 {
+			temp_ques := question.QuestionForNonAuthor{ID: uint(qId)}
+			//Select("id, form_id, options, title, description, is_required, ")
+			if result := db.Select("id, form_id, options, title, description, is_required, ques_type, points").Model(&question.Question{}).Where("id = ?", qId).Find(&temp_ques); result.Error == nil && result.RowsAffected > 0 {
 				questions[int(qId)] = temp_ques
 			}
 		}

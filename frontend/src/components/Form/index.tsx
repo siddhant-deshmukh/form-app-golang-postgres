@@ -17,7 +17,7 @@ export const Form = ({ submitForm }: {
 
 
   return (
-    <div className="flex flex-col w-screen h-screen bg-purple-100" style={{ minWidth: '352px' }}>
+    <div className="flex flex-col w-full pb-10 bg-purple-100" style={{ minWidth: '352px' }}>
       <div className='relative px-2 my-2 flex  space-x-2 pr-3 w-full max-w-3xl  mx-auto  '>
         <div className='w-full h-full '>
           <FormTitleDesc readOnly={true} />

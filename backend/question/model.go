@@ -40,23 +40,25 @@ type NewQuestion struct {
 	IndexAt     uint           `json:"index_at" validate:"min=0"`
 }
 type EditQuestion struct {
-	IsRequired  bool     `json:"is_required" validate:"boolean"`
-	QuesType    string   `json:"ques_type,omitempty" validate:"omitempty,oneof=mcq checkbox short long dropdown date time"`
-	Title       string   `json:"title,omitempty" validate:"omitempty,max=100,min=1"`
-	Description string   `json:"description,omitempty" validate:"omitempty,max=100"`
-	Options     []string `json:"options" validate:"omitempty,max=99"`
-	CorrectAns  []string `json:"correct_ans" validate:"omitempty,max=99"`
-	Points      uint     `json:"points,omitempty" validate:"omitempty,min=1"`
+	IsRequired  bool           `json:"is_required" validate:"boolean"`
+	QuesType    string         `json:"ques_type,omitempty" validate:"omitempty,oneof=mcq checkbox short long dropdown date time"`
+	Title       string         `json:"title,omitempty" validate:"omitempty,max=100,min=1"`
+	Description string         `json:"description,omitempty" validate:"omitempty,max=100"`
+	Options     pq.StringArray `json:"options" validate:"omitempty,max=99"`
+	CorrectAns  pq.StringArray `json:"correct_ans" validate:"omitempty,max=99"`
+	Points      uint           `json:"points,omitempty" validate:"omitempty,min=1"`
 }
-type QuestionWithOutAnswer struct {
-	ID          uint     `json:"id"`
-	IsRequired  bool     `json:"is_required"`
-	QuesType    string   `json:"ques_type"`
-	Title       string   `json:"title"`
-	Description string   `json:"description"`
-	Options     []string `json:"options"`
-	Points      uint     `json:"points"`
-	FormID      uint     `json:"form_id,omitempty"`
+type QuestionForNonAuthor struct {
+	ID          uint           `json:"id"`
+	IsRequired  bool           `json:"is_required" gorm:"default:true; not null"`
+	QuesType    string         `json:"ques_type" gorm:"check:ques_type IN ('mcq','checkbox','short','long','dropdown','date','time','eliminated');default:'mcq'; not null"`
+	Title       string         `json:"title" gorm:"type:varchar(100); check:char_length(title) > 0; default:'Untitled question'; not null"`
+	Description string         `json:"description" gorm:"type:varchar(200); default:''; not null"`
+	Options     pq.StringArray `json:"options" gorm:"type:text[]; default:'{\"Option 1\"}'; check:array_length(options, 1) < 100"` //* not working witout gorm tag
+	Points      uint           `json:"points" gorm:"check:points > 0; default: 1 "`
+	FormID      uint           `json:"form_id" gorm:"not null"`
+
+	IndexAt uint `json:"index_at" gorm:"-"`
 }
 
 func (que *Question) AfterCreate(tx *gorm.DB) (err error) {

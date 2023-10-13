@@ -151,6 +151,13 @@ func registerUser(c *gin.Context) {
 	*/
 }
 
+func logout(c *gin.Context) {
+	c.SetCookie("gf_clone_auth_token", "", 000, "/", "http://www.localhost:8080.com", false, true)
+	c.JSON(http.StatusOK, gin.H{
+		"msg": "Successfully loged out",
+	})
+}
+
 func saveTokenString(c *gin.Context, ID string) error {
 
 	// fmt.Println(ID)

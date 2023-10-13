@@ -31,7 +31,7 @@ export const FormEditor = (
   const addQuestion = async (indexAt: number) => {
     const { status, que } = await createNewQuestion({ title: "Untitled Question", form_id: formId }, indexAt)
     if (status === 201 && que) {
-      dispatch(addQue({ index: (selected_que) ? selected_que + 1 : 0, question: que }));
+      dispatch(addQue({ index: indexAt, question: que }));
     } else {
       dispatch(setMsg({ msgType: "err", msg: `Something went wrong while creating question (${status})` }))
     }
@@ -82,7 +82,7 @@ export const FormEditor = (
     }
   }
   return (
-    <div className='relative  my-2 flex px-0.5 space-x-2   w-full  max-w-[600px]  slg:max-w-[700px]  mx-auto '>
+    <div className='relative  my-2 flex px-0.5 space-x-2 pb-10  w-full  max-w-[600px]  slg:max-w-[700px]  mx-auto '>
       <div className='w-full h-full  '>
         < FormTitleDesc />
         <SortableQueList selectQuestionRef={selectQuestionRef} />
@@ -108,7 +108,7 @@ export const FormEditor = (
             event.preventDefault();
             let ind = (selected_que) ? que_seq.indexOf(selected_que) : que_seq.length
             ind = (ind < 0) ? que_seq.length : ind
-            addQuestion(ind)
+            addQuestion(ind + 1)
           }}>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 rounded-full border-2 border-gray-500 ">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
